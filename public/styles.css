@@ -22,12 +22,12 @@ body {
 }
 
 #output {
-    width: 300px;
+    width: 400px;
+    height: 500px;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
     background-color: #fff;
-    min-height: 100px;
-    overflow-y: auto;
+    overflow-y: scroll;
     text-align: left;
 }
