@@ -1,7 +1,8 @@
-const fetch = require("node-fetch");
-require("dotenv").config();
+import fetch from "node-fetch";
+import dotenv from "dotenv";
+dotenv.config();
 
-exports.handler = async function (event, context) {
+export async function handler(event, context) {
   try {
     const { message } = JSON.parse(event.body);
 
@@ -50,4 +51,4 @@ exports.handler = async function (event, context) {
       }),
     };
   }
-};
+}
