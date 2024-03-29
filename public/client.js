@@ -18,7 +18,7 @@ async function sendMessage(message) {
     }
 
     const data = await response.json();
-    const chatResponse = data.choices[0].message.content.trim();
+    const chatResponse = data.chatResponse.trim(); // Extract chatResponse from data
     return chatResponse;
   } catch (error) {
     console.error("Error sending message:", error);
