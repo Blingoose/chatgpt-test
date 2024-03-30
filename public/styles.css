@@ -42,6 +42,11 @@ body {
   color: #673f69;
 }
 
+::placeholder {
+  color: #673f69;
+  opacity: 0.8;
+}
+
 #inputField:focus {
   outline: 2px solid #fff;
 }
