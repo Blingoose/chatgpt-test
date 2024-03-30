@@ -26,7 +26,7 @@ async function sendMessage(message) {
 
     const data = await response.json();
     const chatResponse = data.chatResponse.trim(); // Extract chatResponse from data
-    updateConversationHistory("chatGPT", chatResponse);
+    updateConversationHistory("system", chatResponse);
     return chatResponse;
   } catch (error) {
     console.error("Error sending message:", error);

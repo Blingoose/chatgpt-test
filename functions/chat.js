@@ -1,8 +1,29 @@
 require("dotenv").config();
+const fetch = require("node-fetch");
 
 exports.handler = async function (event, context) {
   try {
-    const { message } = JSON.parse(event.body);
+    const requestBody = JSON.parse(event.body);
+    const { message, conversationHistory } = requestBody;
+
+    const messages = [
+      {
+        role: "system",
+        content: "You are ChatGPT",
+      },
+      {
+        role: "user",
+        content: message,
+      },
+    ];
+
+    if (conversationHistory) {
+      // If conversation history exists, add it as a separate message
+      messages.push({
+        role: "user",
+        content: conversationHistory,
+      });
+    }
 
     const response = await fetch("https://api.openai.com/v1/chat/completions", {
       method: "POST",
@@ -12,17 +33,8 @@ exports.handler = async function (event, context) {
       },
       body: JSON.stringify({
         model: "gpt-3.5-turbo",
-        max_tokens: 50,
-        messages: [
-          {
-            role: "system",
-            content: "You are ChatAPI",
-          },
-          {
-            role: "user",
-            content: message,
-          },
-        ],
+        max_tokens: 250,
+        messages: messages,
       }),
     });
 
