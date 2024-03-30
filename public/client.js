@@ -1,4 +1,5 @@
 const inputField = document.getElementById("inputField");
+const submitButton = document.getElementById("submitButton");
 const outputDiv = document.getElementById("output");
 
 let conversationHistory = [];
@@ -34,8 +35,8 @@ async function sendMessage(message) {
   }
 }
 
-inputField.addEventListener("keypress", async function (event) {
-  if (event.key === "Enter") {
+async function submitUserMessage(event) {
+  if (event.key === "Enter" || event.type === "click") {
     const userMessage = inputField.value.trim();
     if (userMessage !== "") {
       try {
@@ -51,4 +52,7 @@ inputField.addEventListener("keypress", async function (event) {
       }
     }
   }
-});
+}
+
+inputField.addEventListener("keypress", submitUserMessage);
+submitButton.addEventListener("click", submitUserMessage);
