@@ -1,6 +1,12 @@
 const inputField = document.getElementById("inputField");
 const outputDiv = document.getElementById("output");
 
+let conversationHistory = [];
+
+function updateConversationHistory(sender, message) {
+  conversationHistory.push({ sender, message });
+}
+
 async function sendMessage(message) {
   try {
     const response = await fetch("/.netlify/functions/chat", {
@@ -9,7 +15,8 @@ async function sendMessage(message) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        message: message.toString() || "", // Ensure message is not null or undefined
+        message: message || "",
+        conversationHistory,
       }),
     });
 
@@ -19,6 +26,7 @@ async function sendMessage(message) {
 
     const data = await response.json();
     const chatResponse = data.chatResponse.trim(); // Extract chatResponse from data
+    updateConversationHistory("chatGPT", chatResponse);
     return chatResponse;
   } catch (error) {
     console.error("Error sending message:", error);
@@ -31,6 +39,7 @@ inputField.addEventListener("keypress", async function (event) {
     const userMessage = inputField.value.trim();
     if (userMessage !== "") {
       try {
+        updateConversationHistory("user", userMessage);
         const chatResponse = await sendMessage(userMessage);
         inputField.value = "";
         outputDiv.innerHTML += `<p><strong>You:</strong> ${userMessage}</p>`;
