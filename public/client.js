@@ -17,7 +17,7 @@ async function sendMessage(message) {
       },
       body: JSON.stringify({
         message: message || "",
-        conversationHistory: JSON.stringify(conversationHistory),
+        conversationHistory: conversationHistory,
       }),
     });
 
