@@ -18,10 +18,6 @@ exports.handler = async function (event, context) {
         role: "user",
         content: message,
       },
-      {
-        role: "user",
-        content: "JSON format", // Netlify functions: error:'messages' must contain the word 'json' in some form, to use 'response_format' of type 'json_object'.
-      },
     ];
 
     if (conversationHistory) {
