@@ -29,7 +29,7 @@ exports.handler = async function (event, context) {
       });
     }
 
-    const openai = new OpenAI(); // Initializing OpenAI client
+    const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY }); // Initializing OpenAI client
     const response = await openai.chat.completions.create({
       messages: messages,
       model: "gpt-3.5-turbo",
