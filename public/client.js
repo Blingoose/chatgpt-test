@@ -42,8 +42,8 @@ async function submitUserMessage(event) {
         updateConversationHistory("user", userMessage);
         const chatResponse = await sendMessage(userMessage);
         inputField.value = "";
-        outputDiv.innerHTML += `<p><strong>You:</strong> ${userMessage}</p>`;
-        outputDiv.innerHTML += `<p><strong>ChatGPT:</strong> ${chatResponse}</p>`;
+        outputDiv.innerHTML += `<p><span class="you"><strong>You:</strong></span> ${userMessage}</p>`;
+        outputDiv.innerHTML += `<p><span class="trump"><strong>Donald J. Trump:</strong></span> ${chatResponse}</p>`;
         outputDiv.scrollTop = outputDiv.scrollHeight;
       } catch (error) {
         // Handle error
