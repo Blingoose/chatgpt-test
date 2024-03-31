@@ -15,6 +15,11 @@ async function sendMessage(message) {
       message: message || "",
       conversationHistory: conversationHistory,
     });
+    // Log the body before sending the request
+    console.log("Request Body:", {
+      message: message || "",
+      conversationHistory: JSON.stringify(conversationHistory),
+    });
     const response = await fetch("/.netlify/functions/chat", {
       method: "POST",
       headers: {
