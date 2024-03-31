@@ -10,26 +10,14 @@ function updateConversationHistory(sender, message) {
 
 async function sendMessage(message) {
   try {
-    // Log the body before sending the request
-    console.log(
-      JSON.stringify("Request Body:", {
-        message: message || "",
-        conversationHistory: conversationHistory,
-      })
-    );
-    // Log the body before sending the request
-    console.log("Request Body:", {
-      message: message || "",
-      conversationHistory: JSON.stringify(conversationHistory),
-    });
     const response = await fetch("/.netlify/functions/chat", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        message: message || "",
-        conversationHistory,
+        message,
+        conversationHistory: JSON.stringify(conversationHistory),
       }),
     });
     if (!response.ok) {
