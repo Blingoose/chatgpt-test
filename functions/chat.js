@@ -33,14 +33,14 @@ exports.handler = async function (event, context) {
       messages: messages,
       model: "gpt-3.5-turbo",
       max_tokens: 200,
-      response_format: { type: "json_object" },
     });
 
-    const chatResponse = response.choices[0].message.content.trim();
+    const parsedResponse = JSON.parse(response);
+    const chatResponse = parsedResponse.choices[0].message.content.trim();
 
     return {
       statusCode: 200,
-      body: chatResponse,
+      body: JSON.stringify({ chatResponse }),
     };
   } catch (error) {
     console.error("Error sending message:", error);
