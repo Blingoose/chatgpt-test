@@ -10,6 +10,11 @@ function updateConversationHistory(sender, message) {
 
 async function sendMessage(message) {
   try {
+    // Log the body before sending the request
+    console.log("Request Body:", {
+      message: message || "",
+      conversationHistory: conversationHistory,
+    });
     const response = await fetch("/.netlify/functions/chat", {
       method: "POST",
       headers: {
@@ -17,10 +22,9 @@ async function sendMessage(message) {
       },
       body: JSON.stringify({
         message: message || "",
-        conversationHistory: conversationHistory,
+        conversationHistory,
       }),
     });
-
     if (!response.ok) {
       throw new Error("Failed to fetch chat response");
     }
