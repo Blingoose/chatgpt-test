@@ -11,10 +11,12 @@ function updateConversationHistory(sender, message) {
 async function sendMessage(message) {
   try {
     // Log the body before sending the request
-    console.log("Request Body:", {
-      message: message || "",
-      conversationHistory: conversationHistory,
-    });
+    console.log(
+      JSON.stringify("Request Body:", {
+        message: message || "",
+        conversationHistory: conversationHistory,
+      })
+    );
     // Log the body before sending the request
     console.log("Request Body:", {
       message: message || "",
