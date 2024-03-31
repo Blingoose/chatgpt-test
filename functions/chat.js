@@ -45,7 +45,7 @@ exports.handler = async function (event, context) {
 
     return {
       statusCode: 200,
-      body: JSON.stringify({ chatResponse }),
+      body: chatResponse,
     };
   } catch (error) {
     console.error("Error sending message:", error);
