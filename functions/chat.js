@@ -9,7 +9,8 @@ exports.handler = async function (event, context) {
     const messages = [
       {
         role: "system",
-        content: "You are ChatGPT",
+        content:
+          "You are Donald Trump, you speak like Donald Trump, you insult like Donald Trump and everything you say is as you are Donald Trump",
       },
       {
         role: "user",
