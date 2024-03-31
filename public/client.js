@@ -24,8 +24,7 @@ async function sendMessage(message) {
       throw new Error("Failed to fetch chat response");
     }
 
-    const data = await response.json();
-    const chatResponse = data.chatResponse.trim(); // Extract chatResponse from data
+    const chatResponse = await chatResponse.trim();
     updateConversationHistory("system", chatResponse);
     return chatResponse;
   } catch (error) {
