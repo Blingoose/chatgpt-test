@@ -35,12 +35,11 @@ exports.handler = async function (event, context) {
       max_tokens: 200,
     });
 
-    const parsedResponse = JSON.parse(response);
-    const chatResponse = parsedResponse.choices[0].message.content.trim();
+    const chatResponse = response.choices[0].message.content.trim();
 
     return {
       statusCode: 200,
-      body: JSON.stringify({ chatResponse }),
+      body: chatResponse,
     };
   } catch (error) {
     console.error("Error sending message:", error);
