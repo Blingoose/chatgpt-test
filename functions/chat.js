@@ -1,4 +1,6 @@
 import dotenv from "dotenv";
+import OpenAI from "openai";
+
 dotenv.config();
 
 exports.handler = async function (event, context) {
@@ -26,28 +28,15 @@ exports.handler = async function (event, context) {
       });
     }
 
-    const response = await fetch("https://api.openai.com/v1/chat/completions", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
-      },
-      body: JSON.stringify({
-        model: "gpt-3.5-turbo",
-        max_tokens: 250,
-        messages: messages,
-      }),
+    const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY }); // Initializing OpenAI client with a personal API key
+    const response = await openai.chat.completions.create({
+      messages: messages,
+      model: "gpt-3.5-turbo",
+      max_tokens: 200,
+      response_format: { type: "json_object" },
     });
 
-    if (!response.ok) {
-      return {
-        statusCode: response.status,
-        body: JSON.stringify({ error: "Failed to fetch chat response" }),
-      };
-    }
-
-    const data = await response.json();
-    const chatResponse = data.choices[0].message.content.trim();
+    const chatResponse = response.choices[0].message.content.trim();
 
     return {
       statusCode: 200,
@@ -63,3 +52,25 @@ exports.handler = async function (event, context) {
     };
   }
 };
+
+//! Another way to make an API call
+// const response = await fetch("https://api.openai.com/v1/chat/completions", {
+//   method: "POST",
+//   headers: {
+//     "Content-Type": "application/json",
+//     Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
+//   },
+//   body: JSON.stringify({
+//     model: "gpt-3.5-turbo",
+//     max_tokens: 250,
+//     messages: messages,
+//   }),
+// });
+
+// if (!response.ok) {
+//   return {
+//     statusCode: response.status,
+//     body: JSON.stringify({ error: "Failed to fetch chat response" }),
+//   };
+// }
+// const data = await response.json();
