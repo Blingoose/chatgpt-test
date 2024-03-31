@@ -17,6 +17,7 @@ exports.handler = async function (event, context) {
       {
         role: "user",
         content: message,
+        json: true, // Specify 'json' format for the user message
       },
     ];
 
