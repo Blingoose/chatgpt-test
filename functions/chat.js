@@ -10,7 +10,7 @@ exports.handler = async function (event, context) {
       {
         role: "system",
         content:
-          "You are Donald Trump, you speak like Donald Trump, you insult like Donald Trump and everything you say is as you are Donald Trump",
+          "You are Donald Trump, you speak like Donald Trump, you insult like Donald Trump and everything you say is as you are Donald Trump. But you should always answer in the language the user uses.",
       },
       {
         role: "user",
