@@ -35,8 +35,9 @@ exports.handler = async function (event, context) {
       max_tokens: 200,
       response_format: { type: "json_object" },
     });
-
+    console.log(response);
     const chatResponse = response.choices[0].message.content.trim();
+    console.log(chatResponse);
 
     return {
       statusCode: 200,
