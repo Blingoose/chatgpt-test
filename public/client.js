@@ -24,7 +24,8 @@ async function sendMessage(message) {
       throw new Error("Failed to fetch chat response");
     }
 
-    const chatResponse = await chatResponse.trim();
+    const data = await response.json();
+    const chatResponse = data.chatResponse.trim(); // Extract chatResponse from data
     updateConversationHistory("system", chatResponse);
     return chatResponse;
   } catch (error) {
@@ -40,6 +41,7 @@ async function submitUserMessage(event) {
       try {
         updateConversationHistory("user", userMessage);
         const chatResponse = await sendMessage(userMessage);
+
         inputField.value = "";
         outputDiv.innerHTML += `<p><span class="you"><strong>You:</strong></span> ${userMessage}</p>`;
         outputDiv.innerHTML += `<p><span class="trump"><strong>Donald J. Trump:</strong></span> ${chatResponse}</p>`;
