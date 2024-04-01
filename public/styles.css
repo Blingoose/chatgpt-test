@@ -13,7 +13,6 @@ body {
   text-align: center;
   display: flex;
   flex-direction: column;
-  /* align-items: center; */
 }
 
 #submitButton {
@@ -44,6 +43,9 @@ body {
   background-color: #e2b581;
   color: #2d477c;
   transition: background 0.3s ease-in;
+
+  /* Reset default appearance */
+  -webkit-appearance: none;
 }
 
 ::placeholder {
