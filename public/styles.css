@@ -44,8 +44,9 @@ body {
   color: #2d477c;
   transition: background 0.3s ease-in;
 
-  /* Reset default appearance */
-  -webkit-appearance: none;
+  /* ui fix for iOS Safari */
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
 }
 
 ::placeholder {
