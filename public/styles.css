@@ -30,6 +30,8 @@ body {
 #submitButton:active {
   transition: background 0.2s ease-in-out;
   background-color: rgb(210, 85, 51, 0.5);
+  border: none;
+  outline: none;
   color: #e2b581;
 }
 
