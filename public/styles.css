@@ -66,6 +66,13 @@ body {
 .title {
   color: #fff;
   margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.dt_img {
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
 }
 
 .trump {
